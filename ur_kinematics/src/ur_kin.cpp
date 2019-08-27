@@ -42,6 +42,40 @@ namespace ur_kinematics {
     const double d5 =  0.08535;
     const double d6 =  0.0819;
     #endif
+
+
+    //Add e-series support
+    //Parameters from: https://www.universal-robots.com/how-tos-and-faqs/faq/ur-faq/parameters-for-calculations-of-kinematics-and-dynamics-45257
+
+    //#define UR3_E_PARAMS
+    #ifdef UR3_E_PARAMS
+    const double d1 =  0.15185;
+    const double a2 = -0.24355;
+    const double a3 = -0.2132;
+    const double d4 =  0.13105;
+    const double d5 =  0.08535;
+    const double d6 =  0.0921;
+    #endif
+
+    //#define UR5_E_PARAMS
+    #ifdef UR5_E_PARAMS
+    const double d1 =  0.1625;
+    const double a2 = -0.425;
+    const double a3 = -0.3922;
+    const double d4 =  0.1333;
+    const double d5 =  0.0997;
+    const double d6 =  0.0996;
+    #endif
+
+    //#define UR10_E_PARAMS
+    #ifdef UR10_E_PARAMS
+    const double d1 =  0.1807;
+    const double a2 = -0.6127;
+    const double a3 = -0.57155;
+    const double d4 =  0.17415;
+    const double d5 =  0.11985;
+    const double d6 =  0.11655;
+    #endif
   }
 
   void forward(const double* q, double* T) {

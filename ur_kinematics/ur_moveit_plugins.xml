@@ -18,6 +18,29 @@
   </class>
 </library>
 
+<library path="lib/libur10_moveit_plugin">
+  <class name="ur_kinematics/UR10KinematicsPlugin" type="ur_kinematics::URKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
+    <description>
+      Analytic kinematics for the Universal Robots UR10.
+      Developed by Kelsey Hawkins from Georgia Tech.
+      See http://hdl.handle.net/1853/50782 for details.
+    </description>
+  </class>
+</library>
+
+
+<!-- E-Series Plugins -->
+
+<library path="lib/libur3e_moveit_plugin">
+  <class name="ur_kinematics/UR3eKinematicsPlugin" type="ur_kinematics::URKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
+    <description>
+      Analytic kinematics for the Universal Robots UR5e.
+      Developed by Kelsey Hawkins from Georgia Tech.
+      See http://hdl.handle.net/1853/50782 for details.
+      This is a test by Clark Teeple
+    </description>
+  </class>
+</library>
 
 <library path="lib/libur5e_moveit_plugin">
   <class name="ur_kinematics/UR5eKinematicsPlugin" type="ur_kinematics::URKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
@@ -30,13 +53,13 @@
   </class>
 </library>
 
-
-<library path="lib/libur10_moveit_plugin">
-  <class name="ur_kinematics/UR10KinematicsPlugin" type="ur_kinematics::URKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
+<library path="lib/libur10e_moveit_plugin">
+  <class name="ur_kinematics/UR10eKinematicsPlugin" type="ur_kinematics::URKinematicsPlugin" base_class_type="kinematics::KinematicsBase">
     <description>
-      Analytic kinematics for the Universal Robots UR10.
+      Analytic kinematics for the Universal Robots UR5e.
       Developed by Kelsey Hawkins from Georgia Tech.
       See http://hdl.handle.net/1853/50782 for details.
+      This is a test by Clark Teeple
     </description>
   </class>
 </library>

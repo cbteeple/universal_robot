@@ -8,8 +8,6 @@ joint_limits:
     has_acceleration_limits: true
     max_acceleration: 3.14
   shoulder_lift_joint:
-    min_position: -3.14159
-    max_position: 0
     has_velocity_limits: true
     max_velocity: 3.14
     has_acceleration_limits: true
@@ -20,15 +18,11 @@ joint_limits:
     has_acceleration_limits: true
     max_acceleration: 3.14
   wrist_1_joint:
-    min_position: -3.14159
-    max_position: 2.0
     has_velocity_limits: true
     max_velocity: 6.28
     has_acceleration_limits: true
     max_acceleration: 3.14
   wrist_2_joint:
-    min_position: -2.1
-    max_position: 2.1
     has_velocity_limits: true
     max_velocity: 6.28
     has_acceleration_limits: true

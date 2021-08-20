@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs moveit_core moveit_
 
 find_package(Boost REQUIRED COMPONENTS system)
 
+find_package(PythonLibs 2.7 REQUIRED)
+
 catkin_python_setup()
 
 catkin_package(
@@ -23,8 +25,9 @@ catkin_package(
 ## Build ##
 ###########
 
-include_directories(SYSTEM ${Boost_INCLUDE_DIR})
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(include /usr/include/python2.7/)
 
 #CB Series (Old UR)
 add_library(ur3_kin src/ur_kin.cpp)
@@ -69,7 +72,20 @@ set_target_properties(ur5_e_kin PROPERTIES COMPILE_DEFINITIONS "UR5_E_PARAMS")
 add_library(ur10_e_kin src/ur_kin.cpp)
 set_target_properties(ur10_e_kin PROPERTIES COMPILE_DEFINITIONS "UR10_E_PARAMS")
 
+# Add python modules
+PYTHON_ADD_MODULE(ur_kin_py src/ur_kin_py.cpp)
+set_target_properties(ur_kin_py PROPERTIES 
+                      LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION})
+target_link_libraries(ur_kin_py ur5_e_kin boost_python boost_numpy ${PYTHON_LIBRARIES} ${Boost_LIBRARIES} )
 
+
+PYTHON_ADD_MODULE(ur5_e_kin_py src/ur_kin_py.cpp)
+set_target_properties(ur5_e_kin_py PROPERTIES COMPILE_DEFINITIONS "UR5_E_PARAMS"
+                      LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION})
+target_link_libraries(ur5_e_kin_py ur5_e_kin boost_python boost_numpy ${PYTHON_LIBRARIES} ${Boost_LIBRARIES} )
+
+
+# moveit
 add_library(ur3_e_moveit_plugin src/ur_moveit_plugin.cpp)
 set_target_properties(ur3_e_moveit_plugin PROPERTIES COMPILE_DEFINITIONS "UR3_E_PARAMS")
 target_link_libraries(ur3_e_moveit_plugin
@@ -95,6 +111,18 @@ target_link_libraries(ur10_e_moveit_plugin
 #############
 ## Install ##
 #############
+
+
+install(TARGETS ur_kin_py
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
+)
+
+install(TARGETS ur5_e_kin_py
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
+)
+
 
 install(TARGETS ur3_kin ur5_kin ur10_kin ur3_e_kin ur5_e_kin ur10_e_kin ur3_moveit_plugin ur5_moveit_plugin ur10_moveit_plugin ur3_e_moveit_plugin ur5_e_moveit_plugin ur10_e_moveit_plugin
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
